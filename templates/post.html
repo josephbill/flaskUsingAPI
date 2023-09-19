@@ -1,0 +1,15 @@
+<!DOCTYPE>
+<html>
+    <title>Posts</title>
+    <body>
+        <div>
+            <ul>
+                {% for post in posts%}
+                     <li>
+                        {{post.content}}
+                     </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>

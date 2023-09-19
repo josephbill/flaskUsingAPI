@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Data</title>
+</head>
+<body>
+    <h1>User Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_data %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        <form action="/users/{{ user.id }}" method="post">
+                            <input type="text" id="new_name" name="new_name" placeholder="New Name">
+                            <button type="submit">Update</button>
+                        </form>
+                        <form action="/users/{{ user.id }}/delete" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <form action="/users/{{ user.id }}/posts" method="get">
+                            <button type="submit">View Posts</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Add a New User</h2>
+    <form action="/users" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Posts</h2>
+    <ul>
+
+        {% for user in user_data %}
+      
+
+            <li>User: {{ user.username }}</li>
+            <ul>
+                <form action="/users/{{ user.id }}/posts" method="post">
+                    <label for="content">Content:</label><br>
+                    <input type="text" id="content" name="content"><br>
+                    <button type="submit">Create Post</button>
+                </form>
+    
+        {% endfor %}
+    </ul>
+
+    
+</body>
+</html>
